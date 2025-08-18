@@ -110,53 +110,25 @@ Make sure the query is concise (1-2 sentences or phrases) and directly addresses
 
 # AI
 
-# IDEATION_GENERATE_PROMPT = """Act as an computer science experienced researcher specializing in the area related to the provided research topic, aiming to generate a high-impact idea suitable for top-tier conferences (e.g., NeurIPS, ICML, ACL, CVPR).
-
-# Given the following research topic:
-# {research_topic}
-
-# Your task is to generate **one** novel and significant research idea. Present the idea as a structured JSON object with the following fields:
-
-# {{
-#   "title": "A concise, impactful title capturing the core research question or contribution.",
-#   "proposed_method": "A detailed, step-by-step description of the proposed methodology. Include key components, algorithmic procedures, architectural details (if applicable), and the underlying intuition or theoretical justification explaining *why* this method is expected to effectively address the identified gap.",
-#   "experiment_plan": "A concrete plan for empirical validation. Specify: \n- **Datasets:** Standard benchmark datasets suitable for the task.\n- **Baselines:** Key state-of-the-art methods for comparison.\n- **Metrics:** Primary evaluation metrics relevant to the research goal and claimed novelty.\n- **Ablation Studies:** Specific experiments planned to isolate and validate the contribution of key components of the proposed method.",
-# }}
-
-# ### Instructions for Generation:
-# 1.  **Focus on Significance:** Aim for ideas that address a meaningful gap and offer a substantial advancement, not just incremental improvements.
-# 2.  **Ground in SOTA:** The idea should be aware of and build upon (or challenge) existing state-of-the-art, but the core contribution must be novel.
-# 3.  **Ensure Clarity & Detail:** Provide enough detail in `proposed_method` and `experiment_plan` for a knowledgeable researcher to grasp the concept and validation strategy.
-# 4.  **Maintain Feasibility:** The proposed method and experiments must be realistically achievable. Use standard datasets and metrics where possible.
-# 5.  **Adhere to Format:**
-#     *   Generate *only* the JSON object as output. No introductory or concluding text.
-#     *   Ensure the JSON is well-formed, using appropriate escape characters (e.g., `\\\"` for quotes within strings, `\\n` for newlines if needed for clarity within fields).
-#     *   Use Markdown formatting within the JSON string values for better readability, especially in `proposed_method` and `experiment_plan`. Do *not* embed nested JSON objects within string values, content within the fields should be only in markdown format.
-#     *   Do not use json within the fields only markdown formatting.
-
-# Generate the JSON object based on the provided research topic.
-# """
-
-IDEATION_GENERATE_PROMPT = """Act as an experienced HCI researcher specializing in the area related to the provided research topic, aiming to generate a high-impact idea suitable for top-tier conferences (e.g., CHI).
+IDEATION_GENERATE_PROMPT = """Act as an computer science experienced researcher specializing in the area related to the provided research topic, aiming to generate a high-impact idea suitable for top-tier conferences (e.g., NeurIPS, ICML, ACL, CVPR).
 
 Given the following research topic:
 {research_topic}
-
-{abstract_section}
 
 Your task is to generate **one** novel and significant research idea. Present the idea as a structured JSON object with the following fields:
 
 {{
   "title": "A concise, impactful title capturing the core research question or contribution.",
   "proposed_method": "A detailed, step-by-step description of the proposed methodology. Include key components, algorithmic procedures, architectural details (if applicable), and the underlying intuition or theoretical justification explaining *why* this method is expected to effectively address the identified gap.",
-  "experiment_plan": "A concrete plan for empirical validation. ",
+  "experiment_plan": "A concrete plan for empirical validation. Specify: \n- **Datasets:** Standard benchmark datasets suitable for the task.\n- **Baselines:** Key state-of-the-art methods for comparison.\n- **Metrics:** Primary evaluation metrics relevant to the research goal and claimed novelty.\n- **Ablation Studies:** Specific experiments planned to isolate and validate the contribution of key components of the proposed method.",
 }}
 
 ### Instructions for Generation:
 1.  **Focus on Significance:** Aim for ideas that address a meaningful gap and offer a substantial advancement, not just incremental improvements.
-2.  **Ensure Clarity & Detail:** Provide enough detail in `proposed_method` and `experiment_plan` for a knowledgeable researcher to grasp the concept and validation strategy.
-3.  **Maintain Feasibility:** The proposed method and experiments must be realistically achievable.
-4.  **Adhere to Format:**
+2.  **Ground in SOTA:** The idea should be aware of and build upon (or challenge) existing state-of-the-art, but the core contribution must be novel.
+3.  **Ensure Clarity & Detail:** Provide enough detail in `proposed_method` and `experiment_plan` for a knowledgeable researcher to grasp the concept and validation strategy.
+4.  **Maintain Feasibility:** The proposed method and experiments must be realistically achievable. Use standard datasets and metrics where possible.
+5.  **Adhere to Format:**
     *   Generate *only* the JSON object as output. No introductory or concluding text.
     *   Ensure the JSON is well-formed, using appropriate escape characters (e.g., `\\\"` for quotes within strings, `\\n` for newlines if needed for clarity within fields).
     *   Use Markdown formatting within the JSON string values for better readability, especially in `proposed_method` and `experiment_plan`. Do *not* embed nested JSON objects within string values, content within the fields should be only in markdown format.
@@ -164,6 +136,34 @@ Your task is to generate **one** novel and significant research idea. Present th
 
 Generate the JSON object based on the provided research topic.
 """
+
+# IDEATION_GENERATE_PROMPT = """Act as an experienced HCI researcher specializing in the area related to the provided research topic, aiming to generate a high-impact idea suitable for top-tier conferences (e.g., CHI).
+
+# Given the following research topic:
+# {research_topic}
+
+# {abstract_section}
+
+# Your task is to generate **one** novel and significant research idea. Present the idea as a structured JSON object with the following fields:
+
+# {{
+#   "title": "A concise, impactful title capturing the core research question or contribution.",
+#   "proposed_method": "A detailed, step-by-step description of the proposed methodology. Include key components, algorithmic procedures, architectural details (if applicable), and the underlying intuition or theoretical justification explaining *why* this method is expected to effectively address the identified gap.",
+#   "experiment_plan": "A concrete plan for empirical validation. ",
+# }}
+
+# ### Instructions for Generation:
+# 1.  **Focus on Significance:** Aim for ideas that address a meaningful gap and offer a substantial advancement, not just incremental improvements.
+# 2.  **Ensure Clarity & Detail:** Provide enough detail in `proposed_method` and `experiment_plan` for a knowledgeable researcher to grasp the concept and validation strategy.
+# 3.  **Maintain Feasibility:** The proposed method and experiments must be realistically achievable.
+# 4.  **Adhere to Format:**
+#     *   Generate *only* the JSON object as output. No introductory or concluding text.
+#     *   Ensure the JSON is well-formed, using appropriate escape characters (e.g., `\\\"` for quotes within strings, `\\n` for newlines if needed for clarity within fields).
+#     *   Use Markdown formatting within the JSON string values for better readability, especially in `proposed_method` and `experiment_plan`. Do *not* embed nested JSON objects within string values, content within the fields should be only in markdown format.
+#     *   Do not use json within the fields only markdown formatting.
+
+# Generate the JSON object based on the provided research topic.
+# """
 
 # New prompt for the "refresh idea" button to create a completely different approach
 IDEATION_REFRESH_APPROACH_PROMPT = """Take a completely new direction with the following research problem/topic:
