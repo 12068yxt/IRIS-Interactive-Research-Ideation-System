@@ -32,8 +32,14 @@ class IdeationAgent(BaseAgent):
 
         # Get model configuration
         # self.model = self.config["ideation_agent"].get("model", "gemini/gemini-2.0-flash-lite")
-        self.model = self.config["ideation_agent"].get("model", "gemini/gemini-2.0-flash")
+        self.model = self.config["ideation_agent"].get("model", "openrouter/google/gemini-2.0-flash-001")
         # self.model = "gemini/gemini-2.0-flash"
+        # Support for OpenRouter models
+        if self.model.startswith("openrouter/"):
+            # Ensure OpenRouter API key is set
+            if not os.environ.get("OPENROUTER_API_KEY"):
+                logger.warning("OPENROUTER_API_KEY not set. Falling back to default model.")
+                self.model = "openrouter/google/gemini-2.0-flash-001"  # Still use OpenRouter as fallback
         print(f"Using model: {self.model}")
 
         # Add trajectory-level memory

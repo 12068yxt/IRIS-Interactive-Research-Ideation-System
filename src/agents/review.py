@@ -2,6 +2,7 @@ import json
 import re
 import yaml
 import logging
+import os
 from typing import Dict, Any, List, Optional, Tuple
 from .base import BaseAgent
 import numpy as np
@@ -17,9 +18,15 @@ class ReviewAgent(BaseAgent):
     def __init__(self, config_path: str = "config/config.yaml"):
         """Initialize with configuration."""
         super().__init__(config_path)
-# self.model = self.config["review_agent"].get("model", "gemini/gemini-2.0-flash-lite")
-        self.model = self.config["review_agent"].get("model", "gemini/gemini-2.0-flash")
+        # self.model = self.config["review_agent"].get("model", "gemini/gemini-2.0-flash-lite")
+        self.model = self.config["review_agent"].get("model", "openrouter/google/gemini-2.0-flash-001")
         # self.model = self.config["ideation_agent"].get("model", "gemini/gemini-2.0-flash")
+        # Support for OpenRouter models
+        if self.model.startswith("openrouter/"):
+            # Ensure OpenRouter API key is set
+            if not os.environ.get("OPENROUTER_API_KEY"):
+                logger.warning("OPENROUTER_API_KEY not set. Falling back to default model.")
+                self.model = "openrouter/google/gemini-2.0-flash-001"  # Still use OpenRouter as fallback
         # Add default weights for scoring
         self.aspect_weights = {
             "novelty": 0.2,

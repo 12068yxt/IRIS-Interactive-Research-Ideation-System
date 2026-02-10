@@ -134,7 +134,7 @@ retriever = FullTextRetriever(n_retrieval=10, n_keyword_srch=10)
 # paper_finder = PaperFinder(retriever, context_threshold=0.1)
 reranker = HuggingFaceReranker(model_name="cross-encoder/ms-marco-MiniLM-L-6-v2", batch_size=256)
 paper_finder = PaperFinderWithReranker(retriever, reranker=reranker, n_rerank=5, context_threshold=0.1)
-scholar_qa = ScholarQA(paper_finder=paper_finder, llm_model="gemini/gemini-2.0-flash-lite")
+scholar_qa = ScholarQA(paper_finder=paper_finder, llm_model="openrouter/google/gemini-2.0-flash-001")
 
 # API Key management endpoints with improved security
 @app.route("/api/set_api_key", methods=["POST"])
