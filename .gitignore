@@ -1,3 +1,6 @@
 logs/
 uploads/
 config/key.txt
+logs/lib_llm_cache/cache.db
+logs/lib_llm_cache/cache.db-wal
+logs/lib_llm_cache/cache.db-shm
